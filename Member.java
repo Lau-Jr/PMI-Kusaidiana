@@ -20,4 +20,6 @@ class Member {
 		
 		return this.memberId;
 	}
+	
+	
 }
