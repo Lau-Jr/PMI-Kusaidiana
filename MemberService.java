@@ -1,0 +1,5 @@
+interface MemberService {
+	
+	public addMember();
+
+}
