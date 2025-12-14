@@ -57,7 +57,12 @@ final class PMIKusaidianaAPP {
 				System.out.printf("%nMember registered successfully.");
 				System.out.printf("%nMember ID: %d%n", member.getMemberId());
 				break;
-						
+			
+			case 2:
+				System.out.printf("%nMember ID to remove: ");
+				int memberID = input.nextInt();
+				ms.removeMember(ms.searchMember(memberID));
+				break;					
 				
 			default:
 				System.out.printf("%nI'm Still Working on that Feature%n");	

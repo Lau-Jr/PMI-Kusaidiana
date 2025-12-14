@@ -29,7 +29,10 @@ class MemberServiceMap implements MemberService {
 	
 	public void removeMember(Member member){//can this method handle exception
 		
-		members.remove(member.getMemberId());
+		int mid = member.getMemberId();
+		
+		members.remove(mid);
+		System.out.printf("%n Member with id %d is Successfully Removed.%n",mid);
 		
 	}
 		
