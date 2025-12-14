@@ -1,11 +1,16 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
 
 final class PMIKusaidianaAPP {
 	
-	MemberServiceMap ms;
+	private MemberServiceMap ms;
+	private boolean exit;
 
 	public PMIKusaidianaAPP(){
 		
+		boolean exit = false;		
 		ms = new MemberServiceMap();// Each Time App is Started, It will Start with Empty Members
 	}
 	
@@ -14,6 +19,21 @@ final class PMIKusaidianaAPP {
 		System.out.println(menu);
 		System.out.println();
 		System.out.printf("%nChoose option: ");
+	}
+	
+	private void exitMenuSwitch(int selectedExitMenu){
+		
+		Scanner input = new Scanner(System.in);
+		
+		List<Integer> options = new ArrayList<>(Arrays.asList(1, 2));
+		while(!options.contains(selectedExitMenu)){
+			displayMenu(Menu.exitMenu);
+			selectedExitMenu = input.nextInt();
+		}
+		
+		exit = selectedExitMenu == 1? true:false;
+		input.close();
+		
 	}
 	
 	private void memberServiceSwitch(int memberMgmtSwitch){
@@ -60,19 +80,22 @@ final class PMIKusaidianaAPP {
 		
 		int selectedOption = input.nextInt();
 	
-	switch(selectedOption){
+		switch(selectedOption){
 		
-		case 1:
-			displayMenu(Menu.memberMgmtMenu);
-			int memberMgmtSwitch = input.nextInt();
-			app.memberServiceSwitch(memberMgmtSwitch);
-			break;
+			case 1:
+				displayMenu(Menu.memberMgmtMenu);
+				int memberMgmtSwitch = input.nextInt();
+				app.memberServiceSwitch(memberMgmtSwitch);
+				break;
+			
+			default:
+				System.out.printf("%n I'm Still Working on that Module%n");
+			
+			}
 		
-		default:
-			System.out.printf("%n I'm Still Working on that Module%n");
-			input.close();
-		
-		}
+		displayMenu(Menu.exitMenu);	
+		int selectedExitMenu = input.nextInt();
+		app.exitMenuSwitch(selectedExitMenu);
 	
 	}
 }
