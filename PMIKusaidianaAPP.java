@@ -14,6 +14,37 @@ final class PMIKusaidianaAPP {
 		ms = new MemberServiceMap();// Each Time App is Started, It will Start with Empty Members
 	}
 	
+	private void editMember(){
+		Scanner input = new Scanner(System.in);
+		
+		System.out.printf("%nMember ID: ");
+		
+		int memberID = input.nextInt();
+		input.nextLine();///to clear new line.
+		
+		
+		
+		if(ms.members.containsKey(memberID)){
+			
+			Member member = ms.searchMember(memberID);
+			System.out.printf("%nnew Full Name: ");
+			String fullname = input.nextLine();
+			member.setFullName(fullname);
+			
+			System.out.printf("%nUnit: ");
+			String unit = input.nextLine();
+			member.setUnit(unit);
+			
+			System.out.printf("%nMember Modification is successfully");	
+			System.out.printf("%nnew Full Name is %s ",fullname);
+			System.out.printf("%nnew Unit is %s%n",unit);			
+		}
+		else{
+			System.out.printf("%nMember does not Exist%n");
+		}
+		
+	}
+	
 	private static void displayMenu(String menu){
 		System.out.println();
 		System.out.println(menu);
@@ -62,7 +93,11 @@ final class PMIKusaidianaAPP {
 				System.out.printf("%nMember ID to remove: ");
 				int memberID = input.nextInt();
 				ms.removeMember(ms.searchMember(memberID));
-				break;					
+				break;	
+			
+			case 3:
+				editMember();
+				break;
 				
 			default:
 				System.out.printf("%nI'm Still Working on that Feature%n");	

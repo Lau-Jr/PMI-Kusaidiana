@@ -19,7 +19,7 @@ class MemberServiceMap implements MemberService {
 	
 	public Member searchMember(int memberId){//handle if no members added
 	
-		return members.get(memberId);
+		return members.get(memberId);// returns null if key is not found or its value is null.
 	}
 	
 	public HashMap<Integer, Member> getAllMembers(){

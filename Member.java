@@ -9,8 +9,8 @@ class Member {
 	
 	public Member(String fullname, String unit){
 		members ++;
-		this.fullname = fullname;
-		this.unit = unit;
+		setFullName(fullname);
+		setUnit(unit);
 		memberId = members;
 		monthlyContribution = 10000;
 		totalPaid = 0;
@@ -31,6 +31,13 @@ class Member {
 		return this.totalPaid;
 	}
 
+	public void setFullName(String fullname){
+		this.fullname = fullname;
+	}
+	
+	public void setUnit(String unit){
+		this.unit = unit;		
+	}
 	
 	
 }
