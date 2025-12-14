@@ -21,18 +21,18 @@ final class PMIKusaidianaAPP {
 		System.out.printf("%nChoose option: ");
 	}
 	
-	private void exitMenuSwitch(int selectedExitMenu){
-		
+	private void exitMenuSwitch(){
+		displayMenu(Menu.exitMenu);		
 		Scanner input = new Scanner(System.in);
+		int selectedExitMenu5 = input.nextInt();
 		
 		List<Integer> options = new ArrayList<>(Arrays.asList(1, 2));
-		while(!options.contains(selectedExitMenu)){
+		while(!options.contains(selectedExitMenu5)){
 			displayMenu(Menu.exitMenu);
-			selectedExitMenu = input.nextInt();
+			selectedExitMenu5 = input.nextInt();
 		}
 		
-		exit = selectedExitMenu == 1? true:false;
-		input.close();
+		exit = selectedExitMenu5 == 1? true:false;
 		
 	}
 	
@@ -55,13 +55,12 @@ final class PMIKusaidianaAPP {
 				ms.addMember(member);
 				
 				System.out.printf("%nMember registered successfully.");
-				System.out.printf("%nMember ID: %d%n", member.getMemberId());	
+				System.out.printf("%nMember ID: %d%n", member.getMemberId());
 				break;
 						
 				
 			default:
 				System.out.printf("%nI'm Still Working on that Feature%n");	
-				input.close();	
 			
 		}
 		
@@ -72,30 +71,35 @@ final class PMIKusaidianaAPP {
 	
 	public static void main(String[] args){
 		
-		PMIKusaidianaAPP app = new PMIKusaidianaAPP();
+		final PMIKusaidianaAPP app = new PMIKusaidianaAPP();//how to ensure there is only one? singleton pattern?? or is this wrong question as there is not need?
+		Scanner input;
+		boolean exitOptionSelected = false;
 		
-		Scanner input = new Scanner(System.in);
+		do{
+			input = new Scanner(System.in);
+			displayMenu(Menu.mainMenu);		
+			
+			int selectedOption = input.nextInt();
+		
+			switch(selectedOption){
+			
+				case 1:
+					displayMenu(Menu.memberMgmtMenu);
+					int memberMgmtSwitch = input.nextInt();
+					app.memberServiceSwitch(memberMgmtSwitch);
+					break;
 				
-		displayMenu(Menu.mainMenu);		
-		
-		int selectedOption = input.nextInt();
-	
-		switch(selectedOption){
-		
-			case 1:
-				displayMenu(Menu.memberMgmtMenu);
-				int memberMgmtSwitch = input.nextInt();
-				app.memberServiceSwitch(memberMgmtSwitch);
-				break;
-			
-			default:
-				System.out.printf("%n I'm Still Working on that Module%n");
-			
-			}
-		
-		displayMenu(Menu.exitMenu);	
-		int selectedExitMenu = input.nextInt();
-		app.exitMenuSwitch(selectedExitMenu);
-	
+				case 5:
+					app.exitMenuSwitch();
+					exitOptionSelected = true;//or use break with lebel, this is flag
+					break;
+				default:
+					System.out.printf("%n I'm Still Working on that Module%n");
+				
+				}
+			if(!exitOptionSelected)
+				app.exitMenuSwitch();			
+		}while(!app.exit);
+	input.close();
 	}
 }
