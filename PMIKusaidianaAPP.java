@@ -1,40 +1,76 @@
 import java.util.Scanner;
 
-class PMIKusaidianaAPP {
+final class PMIKusaidianaAPP {
 	
-	public static void displayMenu(String menu){
+	MemberServiceMap ms;
+
+	public PMIKusaidianaAPP(){
+		
+		ms = new MemberServiceMap();// Each Time App is Started, It will Start with Empty Members
+	}
+	
+	private static void displayMenu(String menu){
 		System.out.println();
 		System.out.println(menu);
 		System.out.println();
 		System.out.printf("%nChoose option: ");
 	}
 	
-	public static void main(String[] args){
+	private void memberServiceSwitch(int memberMgmtSwitch){
+		
+		Member member;
 		
 		Scanner input = new Scanner(System.in);
 		
-		String menu = """
-			==== WELCOME TO PMI KUSAIDIANA SYSTEM ====
+		switch(memberMgmtSwitch){
 			
-			1. Manage Members
-			2. Record Contribution
-			3. Record Event Support
-			4. View Reports
-			5. Exit
-			""";
+			case 1:
+				System.out.printf("%nFull Name: ");
+				String fullName = input.nextLine();
+				
+				System.out.printf("%nUnit: ");
+				String unit = input.nextLine();
+				
+				member = new Member(fullName, unit);
+				ms.addMember(member);
+				
+				System.out.printf("%nMember registered successfully.");
+				System.out.printf("%nMember ID: %d%n", member.getMemberId());	
+				break;
+						
+				
+			default:
+				System.out.printf("%nI'm Still Working on that Feature%n");	
+				input.close();	
+			
+		}
 		
-		displayMenu(menu);		
+		
+		
+	}
+	
+	
+	public static void main(String[] args){
+		
+		PMIKusaidianaAPP app = new PMIKusaidianaAPP();
+		
+		Scanner input = new Scanner(System.in);
+				
+		displayMenu(Menu.mainMenu);		
 		
 		int selectedOption = input.nextInt();
 	
 	switch(selectedOption){
 		
 		case 1:
-			System.out.printf("%nYou Selected Member Management%n");
+			displayMenu(Menu.memberMgmtMenu);
+			int memberMgmtSwitch = input.nextInt();
+			app.memberServiceSwitch(memberMgmtSwitch);
 			break;
 		
 		default:
-			System.out.printf("%n I'm Still Working on that Module%n");		
+			System.out.printf("%n I'm Still Working on that Module%n");
+			input.close();
 		
 		}
 	
