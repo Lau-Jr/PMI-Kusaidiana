@@ -10,5 +10,21 @@ class MemberServiceMap implements MemberService {
 		members.put(member.getMemberId(),member);
 		
 	}
-
+	
+	public Member searchMember(int memberId){//handle if no members added
+	
+		return members.get(memberId);
+	}
+	
+	public HashMap<Integer, Member> getAllMembers(){
+		
+		return (HashMap)members;
+	}
+	
+	public void removeMember(Member member){//can this method handle exception
+		
+		members.remove(member.getMemberId());
+		
+	}
+		
 }

@@ -21,5 +21,16 @@ class Member {
 		return this.memberId;
 	}
 	
+	public void updateTotalPaid(double amount){
+		
+		totalPaid += amount;
+	}
+	
+	public double getTotalPaid(){
+		
+		return this.totalPaid;
+	}
+
+	
 	
 }
