@@ -23,7 +23,6 @@ final class PMIKusaidianaAPP {
 		input.nextLine();///to clear new line.
 		
 		
-		
 		if(ms.members.containsKey(memberID)){
 			
 			Member member = ms.searchMember(memberID);
