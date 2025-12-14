@@ -21,4 +21,13 @@ final class Menu {
 	6. Exit
 	""";
 	
+	final static String exitMenu = """
+	==== Do You Want to Quit? ====
+	
+	1. Yes
+	2. No
+	
+	Please Select Right Option[1 or 2]: 
+	""";
+	
 }
