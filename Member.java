@@ -38,6 +38,8 @@ class Member {
 	public void setUnit(String unit){
 		this.unit = unit;		
 	}
-	
-	
+
+	public String getFullname() {
+		return fullname;
+	}
 }
