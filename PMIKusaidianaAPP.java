@@ -1,17 +1,25 @@
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
+import java.util.*;
 
 final class PMIKusaidianaAPP {
 	
-	private MemberServiceMap ms;
+	private final MemberServiceMap ms;
 	private boolean exit;
 
 	public PMIKusaidianaAPP(){
 		
 		boolean exit = false;		
 		ms = new MemberServiceMap();// Each Time App is Started, It will Start with Empty Members
+	}
+	
+	private void displayAllMembers(){
+		HashMap<Integer, Member> members = ms.getAllMembers();
+
+		System.out.println();
+		for(Member member: members.values()){
+			System.out.printf("Name: %s, ID: %d",member.getFullname(), member.getMemberId());
+		}
+		System.out.println();
+
 	}
 	
 	private void editMember(){
@@ -96,6 +104,10 @@ final class PMIKusaidianaAPP {
 			
 			case 3:
 				editMember();
+				break;
+			
+			case 4:
+				displayAllMembers();
 				break;
 				
 			default:
