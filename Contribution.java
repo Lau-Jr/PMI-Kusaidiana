@@ -1,19 +1,32 @@
+import java.time.LocalDateTime;
+
 public class Contribution {
 	
-	static double fund;
+	private static double fund;
 	
-	private int memberID;
+	private Member member;
+	
+	private double amount;
+
+	private LocalDateTime createdAt;
 	
 	
 	
-	public Contribution(memberID, amount){
-		contribute(memberID, amount);
+	public Contribution(Member member, double amount){
+		this.member = member;
+		this.amount = amount;
+		contribute(this.member, this.amount);
+		this.createdAt = LocalDateTime.now();
 		
 	}
 	
-	public double contribute(memberID, amount){
-		
+	private void contribute(Member member, double amount){//causes ContributionExceedException
+		member.updateTotalPaid(amount);
 		fund += amount;
-		return 0;
-	}
+		}
+
+    public double getFund() {
+        return fund;
+    }
+
 }
