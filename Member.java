@@ -21,11 +21,13 @@ class Member {
 		return this.memberId;
 	}
 	
-	public void updateTotalPaid(double amount){
-		
-		totalPaid += amount;
+	public void updateTotalPaid(double amount) {
+		if (totalPaid < monthlyContribution) {
+			totalPaid += amount;
+			return;
+		}
+		throw new RuntimeException("Contribution Exceeds Monthly Limit");
 	}
-	
 	public double getTotalPaid(){
 		
 		return this.totalPaid;
