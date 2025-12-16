@@ -10,6 +10,25 @@ final class PMIKusaidianaAPP {
 		boolean exit = false;		
 		ms = new MemberServiceMap();// Each Time App is Started, It will Start with Empty Members
 	}
+
+	private void recordContributionSwitch() {
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("===================Record Member Contribution========================");
+		System.out.println("Enter MemberID: ");
+		int memberID = input.nextInt();
+
+		if(ms.getAllMembers().containsKey(memberID)){
+			Member member = ms.searchMember(memberID);
+			System.out.println("Enter Contribution Amount: ");
+			double amount = input.nextDouble();
+			Contribution contribution = new Contribution(member, amount);
+			System.out.printf("%nAmount Has been Recorded, Total Fund is %.2f%n", contribution.getFund());
+			System.out.println();
+			return;
+		}
+		throw new RuntimeException("Member Not Found");
+	}
 	
 	private void displayAllMembers(){
 		HashMap<Integer, Member> members = ms.getAllMembers();
@@ -139,6 +158,10 @@ final class PMIKusaidianaAPP {
 					int memberMgmtSwitch = input.nextInt();
 					app.memberServiceSwitch(memberMgmtSwitch);
 					break;
+
+				case 2:
+					app.recordContributionSwitch();
+					break;
 				
 				case 5:
 					app.exitMenuSwitch();
@@ -153,4 +176,5 @@ final class PMIKusaidianaAPP {
 		}while(!app.exit);
 	input.close();
 	}
+
 }
