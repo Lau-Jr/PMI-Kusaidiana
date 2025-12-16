@@ -16,7 +16,7 @@ final class PMIKusaidianaAPP {
 
 		System.out.println();
 		for(Member member: members.values()){
-			System.out.printf("Name: %s, ID: %d",member.getFullname(), member.getMemberId());
+			System.out.printf("%nName: %s, ID: %d",member.getFullname(), member.getMemberId());
 		}
 		System.out.println();
 
