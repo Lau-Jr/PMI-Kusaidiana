@@ -9,7 +9,11 @@ public class Event {
 
     public Event(EventType eventType,Member member) {
         this.eventType = eventType;
-        this.createdAt = createdAt;
+        this.createdAt = LocalDateTime.now();
         this.member = member;
+    }
+
+    public LocalDateTime getCreateAt() {
+        return  createdAt;
     }
 }
