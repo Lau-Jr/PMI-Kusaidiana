@@ -1,15 +1,15 @@
-class Member {
+public class Member {
 	
 	private static int members;
-	private int memberId;
-	private String fullname;
+	private final int memberId;
+	private String fullName;
 	private String unit;
-	private int monthlyContribution;
+	private final int monthlyContribution;
 	private double totalPaid;
 	
-	public Member(String fullname, String unit){
+	public Member(String fullName, String unit){
 		members ++;
-		setFullName(fullname);
+		setFullName(fullName);
 		setUnit(unit);
 		memberId = members;
 		monthlyContribution = 10000;
@@ -33,15 +33,19 @@ class Member {
 		return this.totalPaid;
 	}
 
-	public void setFullName(String fullname){
-		this.fullname = fullname;
+	public void setFullName(String fullName){
+		this.fullName = fullName;
 	}
-	
+
+	public String getUnit() {
+		return unit;
+	}
+
 	public void setUnit(String unit){
 		this.unit = unit;		
 	}
 
-	public String getFullname() {
-		return fullname;
+	public String getFullName() {
+		return fullName;
 	}
 }
