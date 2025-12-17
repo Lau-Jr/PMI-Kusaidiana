@@ -8,6 +8,9 @@ final class Menu {
 	3. Record Event Support
 	4. View Reports
 	5. Exit
+	
+	Select Option Between [1-5]
+	
 	""";
 	
 	final static String memberMgmtMenu = """
@@ -19,6 +22,21 @@ final class Menu {
 	4. Get All Members
 	5. Home
 	6. Exit
+	
+	Select Option Between [1-6]
+	
+	""";
+
+	final static String eventMgmtMenu = """
+	==== EVENT MANAGEMENT ====
+	
+	1. Death Event
+	2. Birth Event
+	3. Wedding Event
+	4. Home
+	5. Exit
+	
+	Select Option Between [1-5]:
 	""";
 	
 	final static String exitMenu = """
@@ -27,7 +45,8 @@ final class Menu {
 	1. Yes
 	2. No
 	
-	Please Select Right Option[1 or 2]: 
+	Please Select Right Option[1 or 2]:
+	
 	""";
 	
 }
