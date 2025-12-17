@@ -16,6 +16,17 @@ class MemberServiceMap implements MemberService {
 		members.put(member.getMemberId(),member);
 		
 	}
+
+	public void displayAllMembers(){
+		HashMap<Integer, Member> members = getAllMembers();
+
+		System.out.println();
+		for(Member member: members.values()){
+			System.out.printf("%nName: %s, ID: %d",member.getFullName(), member.getMemberId());
+		}
+		System.out.println();
+
+	}
 	
 	public Member searchMember(int memberId){//handle if no members added
 	
