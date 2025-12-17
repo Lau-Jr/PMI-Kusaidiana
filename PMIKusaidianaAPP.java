@@ -4,11 +4,60 @@ final class PMIKusaidianaAPP {
 	
 	private final MemberServiceMap ms;
 	private boolean exit;
+	private final EventService events;
 
-	public PMIKusaidianaAPP(){
+    public PMIKusaidianaAPP(){
 		
 		boolean exit = false;		
 		ms = new MemberServiceMap();// Each Time App is Started, It will Start with Empty Members
+        EventDAO eventDAO = new EventDAO();
+		events = new EventService(eventDAO);
+	}
+
+	private void eventManagementSwitch(){
+
+		EventType eventType = EventType.BIRTH;
+		Member member;
+
+		Scanner input = new Scanner(System.in);
+		displayMenu(Menu.eventMgmtMenu);
+
+		int selection = input.nextInt();
+
+		List<Integer> options = new ArrayList<>(Arrays.asList(1, 2,3,4,5));
+
+		while(!options.contains(selection)){
+			displayMenu(Menu.eventMgmtMenu);
+			selection = input.nextInt();
+		}
+
+		switch(selection){
+			case 1:
+				eventType = EventType.DEATH;
+				break;
+			case 2:
+				break;
+			case 3:
+				eventType = EventType.WEDDING;
+				break;
+			case 4:
+				System.out.println("I'm Working on Taking You Home.");
+				break;
+			case 5:
+				exitMenuSwitch();
+				break;
+
+		}
+
+		System.out.println("Please Enter Event Beneficiary");
+		ms.displayAllMembers();
+		System.out.print("Member ID: ");
+//		int memberId = Integer.parseInt(input.nextLine());// alternative for clearing New Line after prev int?
+		input.nextLine();
+
+		int memberId = input.nextInt();
+		member = ms.searchMember(memberId);
+		events.addEvent(eventType,member);
 	}
 
 	private void recordContributionSwitch() {
@@ -28,17 +77,6 @@ final class PMIKusaidianaAPP {
 			return;
 		}
 		throw new RuntimeException("Member Not Found");
-	}
-	
-	private void displayAllMembers(){
-		HashMap<Integer, Member> members = ms.getAllMembers();
-
-		System.out.println();
-		for(Member member: members.values()){
-			System.out.printf("%nName: %s, ID: %d",member.getFullname(), member.getMemberId());
-		}
-		System.out.println();
-
 	}
 	
 	private void editMember(){
@@ -72,10 +110,7 @@ final class PMIKusaidianaAPP {
 	}
 	
 	private static void displayMenu(String menu){
-		System.out.println();
 		System.out.println(menu);
-		System.out.println();
-		System.out.printf("%nChoose option: ");
 	}
 	
 	private void exitMenuSwitch(){
@@ -89,7 +124,7 @@ final class PMIKusaidianaAPP {
 			selectedExitMenu5 = input.nextInt();
 		}
 		
-		exit = selectedExitMenu5 == 1? true:false;
+		exit = selectedExitMenu5 == 1;
 		
 	}
 	
@@ -126,7 +161,7 @@ final class PMIKusaidianaAPP {
 				break;
 			
 			case 4:
-				displayAllMembers();
+				ms.displayAllMembers();
 				break;
 				
 			default:
@@ -161,6 +196,10 @@ final class PMIKusaidianaAPP {
 
 				case 2:
 					app.recordContributionSwitch();
+					break;
+
+				case 3:
+					app.eventManagementSwitch();
 					break;
 				
 				case 5:
