@@ -42,7 +42,7 @@ final class PMIKusaidianaAPP {
 				break;
 			case 4:
 				System.out.println("I'm Working on Taking You Home.");
-				break;
+				return;
 			case 5:
 				exitMenuSwitch();
 				break;
